@@ -1,6 +1,3 @@
-# TODO: Generate a word that is one letter different from startWord and
-# continue to endWord
-# TODO: Try all possible word combinations until a success, not just first one.
 """Takes 3 parameters: startWord (the given first word of the ladder),
 endWord (the given last word of the ladder), and length (of the ladder).
 Create a ladder which only includes startWord and add it to a list of
@@ -21,7 +18,6 @@ from os.path import dirname
 cur_dir = dirname(__file__)
 fourLetterWords = list()
 
-
 # Tries to open the file fourLetterWords.txt, if it doesn't exist then creates
 # a list of 4-letter words and saves it with the name above.
 try:
@@ -41,8 +37,8 @@ except Exception:
 
 
 def check(word1, word2):
-    """Checks if word is one letter
-    different from word1"""
+    """Checks if word1 is one letter different from word2. Returns True if one
+    letter diffrent, else returns False"""
     if word1 != word2:
         diffrences = 0
         for i in range(len(word2)):
@@ -52,6 +48,8 @@ def check(word1, word2):
             return False
         else:
             return True
+    else:
+        return False
 
 
 def solve(startWord, endWord, length):
@@ -62,16 +60,15 @@ def solve(startWord, endWord, length):
     ladders = list()
     ladder = [startWord]
     ladders.append(ladder)
-    # print(ladders)
-
     # For each ladder, check if it's a word longer than length, skip it if
     # it is, else iterate through fourLetterWords and use checker() to see
     # if it's just one letter off from the last word in the ladder.
     toBRmvd = list()
     for ladd in ladders:
-        if len(ladd) == length + 2:
-            if ladd[-1] != endWord:
-                toBRmvd.append(ladd)
+        if len(ladd) == length + 1:
+            if check(ladd[-1], endWord):
+                ladder = ladd + [endWord]
+                ladders.append(ladder)
         else:
             # If so, create a
             # new ladder that starts with everything in the current ladder
@@ -82,8 +79,6 @@ def solve(startWord, endWord, length):
                 if check(word, ladd[-1]):
                     ladder = ladd + [word]
                     ladders.append(ladder)
-
-    # eliminator()
     for ladd in toBRmvd:
         ladders.remove(ladd)
     print(ladders)

@@ -60,29 +60,24 @@ def solve(startWord, endWord, length):
     ladders = list()
     ladder = [startWord]
     ladders.append(ladder)
-    # For each ladder, check if it's a word longer than length, skip it if
-    # it is, else iterate through fourLetterWords and use checker() to see
+    # For each ladder, check if it's a word longer than length, if it is, check
+    # if endWord is one letter different from the last word in the ladder.
+    # Else iterate through fourLetterWords and use checker() to see
     # if it's just one letter off from the last word in the ladder.
-    toBRmvd = list()
     for ladd in ladders:
         if len(ladd) == length + 1:
             if check(ladd[-1], endWord):
                 ladder = ladd + [endWord]
-                ladders.append(ladder)
+                print(ladder)
         else:
             # If so, create a
             # new ladder that starts with everything in the current ladder
             # followed by the
             # word that we found.
-            toBRmvd.append(ladd)
             for word in fourLetterWords:
                 if check(word, ladd[-1]):
                     ladder = ladd + [word]
                     ladders.append(ladder)
-    for ladd in toBRmvd:
-        ladders.remove(ladd)
-    print(ladders)
-
 # Add that new ladder to the list of ladders. This will
 # result in a list of ladders where the first one only includes startWord, the
 # next few are only two letters long, then are 3 letters long, etc. The last

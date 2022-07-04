@@ -1,6 +1,6 @@
 """Takes 3 parameters: startWord (the given first word of the ladder),
-endWord (the given last word of the ladder), and length (of the ladder).
-Create a ladder which only includes startWord and add it to a list of
+endWord (the given last word of the ladder), and length (the amount of words you
+ can use).Create a ladder which only includes startWord and add it to a list of
 ladders. For each ladder, check if it's a word longer than length, skip it if
 it is, else iterate through fourLetterWords and use checker() to see
 if it's just one letter off from the last word in the ladder. If so, create a

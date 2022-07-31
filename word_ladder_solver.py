@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("startWord")
+parser.add_argument("endWord")
+parser.add_argument("length", type=int)
+args = parser.parse_args()
+
 """Takes 3 parameters: startWord (the given first word of the ladder),
 endWord (the given last word of the ladder), and length (excluding the first and
 last words).Create a ladder which only includes startWord and add it to a list
@@ -27,7 +34,7 @@ try:
             fourLetterWords += [line[:4]]
             # print(fourLetterWords)
 except Exception:
-    with open(os.path.join(cur_dir, "words_alpha.txt")) as wordsfile:
+    with open(os.path.join(cur_dir, "wlist_match11.txt")) as wordsfile:
         for line in wordsfile:
             if len(line) == 5:
                 fourLetterWords += [line[:4]]
@@ -87,4 +94,4 @@ def solve(startWord, endWord, length):
 # result will be all the successful ladders.
 
 
-solve("core", "seed", 4)
+solve(args.startWord, args.endWord, args.length)

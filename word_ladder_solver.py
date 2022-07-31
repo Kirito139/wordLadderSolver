@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Takes 3 parameters: startWord (the given first word of the ladder),
 endWord (the given last word of the ladder), and length (excluding the first and
 last words).Create a ladder which only includes startWord and add it to a list

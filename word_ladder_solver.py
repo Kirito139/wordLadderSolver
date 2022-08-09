@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import os
+from os.path import dirname
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("startWord")
@@ -7,10 +9,10 @@ parser.add_argument("length", type=int)
 args = parser.parse_args()
 
 """Takes 3 parameters: startWord (the given first word of the ladder),
-endWord (the given last word of the ladder), and length (excluding the first and
-last words).Create a ladder which only includes startWord and add it to a list
-of ladders. For each ladder, check if it's a word longer than length, skip it if
-it is, else iterate through fourLetterWords and use checker() to see
+endWord (the given last word of the ladder), and length (excluding the first
+and last words).Create a ladder which only includes startWord and add it to a
+list of ladders. For each ladder, check if it's a word longer than length, skip
+it if it is, else iterate through fourLetterWords and use checker() to see
 if it's just one letter off from the last word in the ladder. If so, create a
 new ladder that starts with everything in the current ladder followed by the
 word that we found. Add that new ladder to the list of ladders. This will
@@ -21,8 +23,6 @@ diffrent from the last which is one word longer than the given length. When
 it reaches the end of the list of ladders, the eliminator() will eliminate
 any ladders that don't include the given endWord as the last word. The end
 result will be all the successful ladders."""
-import os
-from os.path import dirname
 cur_dir = dirname(__file__)
 fourLetterWords = list()
 
